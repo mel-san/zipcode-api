@@ -10,9 +10,9 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-#alias ZipcodeApi.Employees.Employee
+alias ZipcodeApi.Employees.Employee
 
-#ZipcodeApi.Repo.delete_all(Employee)
+ZipcodeApi.Repo.delete_all(Employee)
 
 
 #employee = %ZipcodeApi.Employees.Employee{
@@ -33,8 +33,7 @@ alias ZipcodeApi.Repo
 alias ZipcodeApi.Employees.Employee
 
 
-
-File.stream!("/Users/melaniesanchez/Downloads/simplemaps_uszips_basicv1.80/uszips.csv")
+File.stream!("priv/repo/migrations/uszips.csv")
 |> Stream.drop(1)
 |> CSV.Decoding.Decoder.decode(headers: [:zip, :city, :state_id])
 |> Enum.each(fn {:ok, map} ->
